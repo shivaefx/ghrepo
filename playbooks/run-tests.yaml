@@ -10,8 +10,10 @@
 
     - name: Install test dependencies
       pip:
-        requirements: "{{ zuul.project.src_dir }}/test-requirements.txt"
+        requirements: test-requirements.txt
         executable: pip3
+      args:
+        chdir: "{{ zuul.project.src_dir }}"
 
     - name: show repo contents
       shell: ls -la

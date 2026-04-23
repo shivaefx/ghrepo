@@ -23,3 +23,5 @@
 
     - name: run test file
       shell: python3 test_app.py
+      args:
+        chdir: "{{ zuul.project.src_dir }}"

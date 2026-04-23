@@ -1,12 +1,17 @@
 - hosts: all
+  become: true
+
   tasks:
-    - name: Install pip (Ubuntu)
-      shell: |
-        python3 -m ensurepip --upgrade || true
-        python3 -m pip install --upgrade pip
+    - name: Install pip
+      apt:
+        name: python3-pip
+        state: present
+        update_cache: yes
 
     - name: Install test dependencies
-      shell: pip3 install -r test-requirements.txt
+      pip:
+        requirements: test-requirements.txt
+        executable: pip3
 
     - name: show repo contents
       shell: ls -la

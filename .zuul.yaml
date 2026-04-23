@@ -1,8 +1,16 @@
+- job:
+    name: run-tests
+    nodeset:
+      nodes:
+        - name: ubuntu
+          label: ubuntu-jammy
+    run: playbooks/run-tests.yaml
+
 - project:
     default-branch: main
     check:
       jobs:
-        - noop
+        - run-tests
     gate:
       jobs:
-        - noop
+        - run-tests

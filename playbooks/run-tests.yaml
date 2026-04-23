@@ -1,0 +1,18 @@
+- hosts: all
+  tasks:
+    - name: Install pip
+      ensure_pip:
+        executable: python3
+
+    - name: Install test dependencies
+      pip:
+        requirements: test-requirements.txt
+
+    - name: show repo contents
+      shell: ls -la
+
+    - name: check python version
+      shell: python3 --version
+
+    - name: run test file
+      shell: python3 test_app.py
